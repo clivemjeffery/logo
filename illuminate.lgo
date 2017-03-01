@@ -1,0 +1,43 @@
+to illu :a
+  ; Draw an illuminati triangle at the current turtle
+  ; position. The triangle will have sides of length :a
+  ; The turtle will return to the position and heading
+  ; it had before the procedure was called.
+  ;
+  localmake "b (:a * sin 60) / 3 ; centroid distance
+  localmake "d arctan(1/(sin 60)) ; arc angle for eye
+  localmake "h heading ; save heading
+
+  circle :b / 2
+  penup
+  left 120
+  fd :b * 2
+  right 150
+  pendown
+  repeat 3 [ forward :a right 120 ]
+  penup
+  right 60
+  fd :a / 2
+  left 90
+  fd :b * 2
+  pendown
+  left :d
+  arc :d * 2 (3 * :b) / 2
+  right :d
+  penup
+  bk :b * 2
+  pendown
+  left :d
+  arc :d * 2 -(3 * :b) / 2
+  right :d
+  penup
+  fd :b
+  pendown
+  setheading :h
+end
+
+to illu2
+  illu 400
+  illu (400 * sin 60)/6
+end
+
