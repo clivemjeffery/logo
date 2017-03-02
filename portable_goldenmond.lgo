@@ -1,0 +1,40 @@
+to goldenmond :h
+  localmake "pos pos
+  localmake "heading heading
+  localmake "xmin xcor - :h/2
+  localmake "xmax xcor + :h/2
+  localmake "r :h/1.618
+  localmake "ymin ycor - :r/2
+  localmake "ymax ycor + :r/2
+  pu setxy :xmin :ymin pd
+  seth 0 repeat 2 [ fd :r rt 90 fd :h rt 90 ]
+  
+  ; vertical lines
+  repeat 3 [ 
+    pu setxy :xmin :ymin pd
+    seth 90 fd random :xmax - :xmin
+    seth 0 fd :ymax - :ymin
+  ]
+
+  ; horizontal lines
+  repeat 3 [
+    pu setxy :xmin :ymin pd
+    seth 0 fd random int :ymax - :ymin
+    seth 90 fd :xmax - :xmin
+  ]
+
+  ; colour
+  pu repeat 16 [
+    setxy :xmin :ymin
+    seth 90 fd random :xmax - :xmin
+    seth 0 fd random int :ymax - :ymin
+    ; jslogo doesn't have pixel or setfloodcolour
+    if (pixel = screencolour) [
+      setfloodcolour pick [blue yellow red green]
+      fill
+    ]
+  ] pd
+
+  ; restore turtle
+  pu setpos :pos pd seth :heading
+end
