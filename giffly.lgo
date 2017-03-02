@@ -1,0 +1,17 @@
+to giffly
+	; GIF animation
+	CLEARSCREEN
+	SETACTIVEAREA [-150 -150 150 150]
+
+	; Flag to indicate we do not append the first frame
+	MAKE "append "FALSE
+	REPEAT 36 [
+	  REPEAT 4 [FORWARD 100 RIGHT 90]
+	  RIGHT 10
+	  ; Save a frame (no delay and loop forever)
+	  (GIFSAVE "myfile.gif 0 :append 0)
+	  MAKE "append "TRUE
+	]
+
+end
+

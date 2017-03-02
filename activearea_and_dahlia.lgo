@@ -1,0 +1,39 @@
+to boxactivearea
+  pu
+  setxy item 1 activearea item 2 activearea
+  seth 0
+  pd
+  fd (item 4 activearea) - (item 2 activearea) rt 90
+  fd (item 3 activearea) - (item 1 activearea) rt 90
+  fd (item 4 activearea) - (item 2 activearea) rt 90
+  fd (item 3 activearea) - (item 1 activearea) rt 90
+  pu
+  home
+  pd
+end
+
+to dahlia
+  repeat 8 [
+    rt 45 repeat 6 [
+      repeat 90 [
+        fd 2 rt 2
+        ]
+      rt 90
+    ]
+  ]
+end
+
+to squiral
+  repeat 150 [
+    fd repcount * 3
+    rt 90
+  ]
+end
+
+to versaspiral :reps :gap :turn
+  repeat :reps [
+    fd repcount * :gap
+    rt :turn
+  ]
+end
+

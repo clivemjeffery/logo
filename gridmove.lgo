@@ -1,0 +1,15 @@
+to gridmove :gap :size
+  local "heading ; save current heading
+  local "sizerep 
+  repeat :size [
+    make "sizerep repcount
+    repeat 2 [
+      repeat :sizerep [
+        circle 5
+        fd :gap 
+      ]
+      rt 90
+    ]
+   ]
+end
+

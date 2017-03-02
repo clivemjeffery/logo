@@ -1,0 +1,46 @@
+to boxactivearea
+  pu
+  setxy item 1 activearea item 2 activearea
+  seth 0
+  pd
+  fd (item 4 activearea) - (item 2 activearea) rt 90
+  fd (item 3 activearea) - (item 1 activearea) rt 90
+  fd (item 4 activearea) - (item 2 activearea) rt 90
+  fd (item 3 activearea) - (item 1 activearea) rt 90
+  pu
+  home
+  pd
+end
+
+to mond1
+  cs
+  setpensize 8
+  boxactivearea
+  repeat 3 [ ; vertical lines
+     pu
+     setxy item 1 activearea item 2 activearea
+     pd
+     seth 90 fd random (item 3 activearea) - (item 1 activearea)
+     seth 0 fd (item 4 activearea) - (item 2 activearea)
+  ]
+  repeat 3 [ ; horizontal lines
+     pu
+     setxy item 1 activearea item 2 activearea
+     pd
+     seth 0 fd random (item 4 activearea) - (item 2 activearea)
+     seth 90 fd (item 3 activearea) - (item 1 activearea)
+  ]
+  ; colour
+  pu
+  repeat 16 [
+    setxy item 1 activearea item 2 activearea
+    seth 90 fd random (item 3 activearea) - (item 1 activearea)
+    seth 0 fd random (item 4 activearea) - (item 2 activearea)
+    if (pixel = screencolour) [
+      setfloodcolour pick [blue yellow red green]
+      fill
+    ]
+  ]
+  pd
+end
+
