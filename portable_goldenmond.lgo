@@ -28,7 +28,7 @@ to goldenmond :h
     setxy :xmin :ymin
     seth 90 fd random :xmax - :xmin
     seth 0 fd random int :ymax - :ymin
-    ; jslogo doesn't have pixel or setfloodcolour
+    ; jslogo doesn't have pixel or setfloodcolour so portability is doomed
     if (pixel = screencolour) [
       setfloodcolour pick [blue yellow red green]
       fill
@@ -37,4 +37,12 @@ to goldenmond :h
 
   ; restore turtle
   pu setpos :pos pd seth :heading
+end
+
+to random_square
+  repeat 40 [
+    pu setxy random 200 * pick [-1 1] random 200 * pick [-1 1] pd
+    localmake "size random 100
+    repeat 4 [ fd :size rt 90 ]
+  ]
 end
