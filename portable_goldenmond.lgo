@@ -1,3 +1,14 @@
+to fill_square :size :colour
+  setfloodcolour :colour
+  repeat 4 [ fd :size rt 90 ]
+  localmake "inside (item 1 pensize) + 1
+  pu rt 45 fd :inside
+  if (pixel = screencolour) [
+    fill
+  ]
+  bk :inside lt 45 pd
+end
+
 to goldenmond :h
   localmake "pos pos
   localmake "heading heading
@@ -39,10 +50,11 @@ to goldenmond :h
   pu setpos :pos pd seth :heading
 end
 
-to random_square
-  repeat 40 [
-    pu setxy random 200 * pick [-1 1] random 200 * pick [-1 1] pd
+to random_squares
+  repeat 10 [
+    pu setxy (random 200) * (pick [-1 1]) (random 200) * (pick [-1 1]) pd
     localmake "size random 100
-    repeat 4 [ fd :size rt 90 ]
+    fill_square :size pick [red yellow green blue white white white ]
   ]
 end
+
